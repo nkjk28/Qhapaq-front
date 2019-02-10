@@ -2,10 +2,15 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '@/components/Index'
 import ManagementIndex from '@/components/ManagementIndex'
-import UserManagement from '@/components/UserManagement'
+
 import Genres from '@/components/Genres'
-import Menus from '@/components/Menus'
-import Ingredients from '@/components/Ingredients'
+
+import Menus from '@/components/menus/index'
+import MenuNew from '@/components/menus/new'
+import MenuShow from '@/components/menus/show'
+
+import Users from '@/components/users/index.vue'
+import UserNew from '@/components/users/new.vue'
 
 Vue.use(Router)
 
@@ -22,9 +27,14 @@ export default new Router({
       component: ManagementIndex
     },
     {
-      path: '/user-management',
-      name: 'UserManagement',
-      component: UserManagement
+      path: '/users',
+      name: 'Users',
+      component: Users
+    },
+    {
+      path: '/user/new',
+      name: 'UserNew',
+      component: UserNew
     },
     {
       path: '/genres',
@@ -37,9 +47,14 @@ export default new Router({
       component: Menus
     },
     {
-      path: '/ingredients/:id',
-      name: 'Ingredients',
-      component: Ingredients
+      path: '/menu/new',
+      name: 'MenuNew',
+      component: MenuNew
+    },
+    {
+      path: '/menu/:id',
+      name: 'MenuShow',
+      component: MenuShow
     }
   ]
 })

@@ -3,7 +3,7 @@
     <h2>{{ menu.name }}の材料</h2>
     <div v-for="ingredient in ingredients" v-bind:key="ingredient.name">
       <span>{{ ingredient.name }}</span><br>
-      <span>{{ ingredient.amount }}g/人</span><br>
+      <span>{{ ingredient.amount }}{{ ingredient.unit }}/人</span><br>
       <span>{{ ingredient.cost }}円/人</span>
     </div>
   </div>
