@@ -11,14 +11,14 @@
     <label>メニュー名: <input type="name" v-model="newMenu.name" /> </label><br>
     <ul>
       <li v-for="(v,i) in newMenu.ingredients" v-bind:key="i">
-        {{v.name}}は一人あたり{{v.amount}}{{v.unit.text}}({{v.cost}}円)
+        {{v.name}}は一人あたり{{v.amount}}{{v.unit}}({{v.cost}}円)
       </li>
     </ul>
     <label>材料: <br>
       <input type="text" v-model="ingredientForm.name" placeholder="材料名"/>は一人あたり
       <input type="text" v-model="ingredientForm.amount" placeholder="量">
       <select v-model="ingredientForm.unit">
-        <option value="g}">g</option>
+        <option value="g">g</option>
         <option value="ml">ml</option>
         <option value="枚">枚</option>
         <option value="匹">匹</option>
@@ -73,7 +73,7 @@ export default {
     },
     clickCreateButton: function () {
       this.axios.post('http://localhost:4567/menu', JSON.stringify(this.newMenu)).then(response => {
-        console.log(response)
+        this.$router.push({name: 'MenuShow', params: {id: response.data.id}})
       }).catch(err => {
         console.log(err.response)
       })
