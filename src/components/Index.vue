@@ -30,7 +30,7 @@ export default {
           password: this.user.password
         })
       ).then(response => {
-        this.$router.push('/management-index')
+        this.$router.push({name: 'ManagementIndex'})
       }).catch(error => {
         alert(error.response.statusText)
       })

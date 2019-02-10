@@ -2,7 +2,7 @@
   <div>
     <h2>メニュー一覧</h2>
     <div v-for="menu in menus" v-bind:key="menu.name">
-      <router-link :to="{name: 'Ingredients', params: {id: menu.id}}">{{ menu.name }}</router-link>
+      <router-link :to="{name: 'MenuShow', params: {id: menu.id}}">{{ menu.name }}</router-link>
     </div>
   </div>
 </template>
