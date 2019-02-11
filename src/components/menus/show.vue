@@ -15,6 +15,7 @@
         <td>{{ ingredient.description }}</td>
       </tr>
     </table>
+    <router-link :to="{name: 'MenuEdit', params: {id: menu.id}}" tag="button">編集する</router-link>
   </div>
 </template>
 
@@ -31,7 +32,7 @@ export default {
   },
   mounted: function () {
     this.axios.get('http://localhost:4567/menu/' + this.$route.params.id).then(response => {
-      this.menu = response.data.menu
+      this.menu = response.data
       this.ingredients = response.data.ingredients
     }).catch(error => {
       console.log(error.response)
