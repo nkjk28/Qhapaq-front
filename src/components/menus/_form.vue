@@ -11,7 +11,9 @@
     <label>メニュー名: <input type="name" v-model="menu.name" /> </label><br>
     <ul>
       <li v-for="(v,i) in menu.ingredients" v-bind:key="i">
-        {{v.name}}は一人あたり{{v.amount}}{{v.unit}}({{v.cost}}円)
+        {{i}}: {{v.name}}は一人あたり{{v.amount}}{{v.unit}}({{v.cost}}円)
+        <button v-on:click="EditIngredientItem(i)">✎</button>
+        <button v-on:click="RemoveIngredientItem(i)">✗</button>
       </li>
     </ul>
     <label>材料: <br>
@@ -33,7 +35,7 @@
     <button v-on:click="appendIngredient">材料を追加する</button>
     <br> <br>
     <button v-on:click="clickCreateButton" v-if="method == 'post'">メニューを追加</button>
-    <button v-on:click="clickUpdateButton" v-else>メニューを更新</button>
+    <button v-on:click="clickUpdateButton" v-else>更新を適応</button>
   </div>
 </template>
 
@@ -49,7 +51,8 @@ export default {
         unit: '',
         cost: 0,
         description: ''
-      }
+      },
+      removeIngredientItemList: []
     }
   },
   methods: {
@@ -69,6 +72,13 @@ export default {
         this.ingredientForm.description = ''
       }
     },
+    EditIngredientItem: function (indexNumber) {
+      console.log(indexNumber)
+    },
+    RemoveIngredientItem: function (indexNumber) {
+      this.removeIngredientItemList.push(this.menu.ingredients[indexNumber])
+      this.menu.ingredients.splice(indexNumber, 1)
+    },
     clickCreateButton: function () {
       this.axios.post('http://localhost:4567/menu', JSON.stringify(this.menu)).then(response => {
         this.$router.push({name: 'MenuShow', params: {id: response.data.id}})
@@ -77,7 +87,11 @@ export default {
       })
     },
     clickUpdateButton: function () {
-      this.axios.post('http://localhost:4567/menu/' + this.menu.id, JSON.stringify(this.menu)).then(response => {
+      let data = JSON.stringify(
+        Object.assign(this.menu, {removeIngredientItemList: this.removeIngredientItemList})
+      )
+      let url = 'http://localhost:4567/menu/' + this.menu.id
+      this.axios.post(url, data).then(response => {
         this.$router.push({name: 'MenuShow', params: {id: response.data.id}})
       }).catch(err => {
         console.log(err.response)
