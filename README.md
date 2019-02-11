@@ -1,4 +1,4 @@
-# qhapaq
+# Qhapaq
 
 > A Vue.js project
 
