@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div> 
+    <div>
       <label>人数: <input type="number" v-model="person"/></label>
     </div>
     <table border="1" width="80%" aligen="center">
