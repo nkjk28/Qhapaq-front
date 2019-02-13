@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div> 
+      <label>人数: <input type="number" v-model="person"/></label>
+    </div>
     <table border="1" width="80%" aligen="center">
       <caption>{{ menu.name }}の材料</caption>
       <tr>
@@ -10,8 +13,8 @@
       </tr>
       <tr  v-for="ingredient in ingredients" v-bind:key="ingredient.name">
         <td>{{ ingredient.name }}</td>
-        <td>{{ ingredient.amount }}{{ ingredient.unit }}/人</td>
-        <td>{{ ingredient.cost }}円/人</td>
+        <td>{{ ingredient.amount * person }}{{ ingredient.unit }}/人</td>
+        <td>{{ ingredient.cost * person }}円/人</td>
         <td>{{ ingredient.description }}</td>
       </tr>
     </table>
@@ -24,6 +27,7 @@ export default {
   name: 'Ingredients',
   data () {
     return {
+      person: 1,
       menu: {},
       ingredients: []
     }
