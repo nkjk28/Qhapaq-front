@@ -73,7 +73,8 @@ export default {
       }
     },
     EditIngredientItem: function (indexNumber) {
-      console.log(indexNumber)
+      this.ingredientForm = this.menu.ingredients[indexNumber]
+      this.menu.ingredients.splice(indexNumber, 1)
     },
     RemoveIngredientItem: function (indexNumber) {
       this.removeIngredientItemList.push(this.menu.ingredients[indexNumber])
