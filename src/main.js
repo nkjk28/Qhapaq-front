@@ -13,7 +13,6 @@ import { far } from '@fortawesome/free-regular-svg-icons'
 
 library.add(fas, far, fab)
 
-
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false
