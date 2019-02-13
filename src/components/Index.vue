@@ -8,6 +8,7 @@
       <br><br>
       <button>Login</button>
     </form>
+    <font-awesome-icon icon="coffee" />
   </div>
 </template>
 
