@@ -3,7 +3,10 @@ import Router from 'vue-router'
 import Index from '@/components/Index'
 import ManagementIndex from '@/components/ManagementIndex'
 
-import Genres from '@/components/Genres'
+import GenreMain from '@/components/genres/Main'
+import Genres from '@/components/genres/Index'
+import GenreNew from '@/components/genres/New'
+import GenreEdit from '@/components/genres/Edit'
 
 import Menus from '@/components/menus/index'
 import MenuNew from '@/components/menus/new'
@@ -39,9 +42,25 @@ export default new Router({
       component: UserNew
     },
     {
-      path: '/genres',
-      name: 'Genres',
-      component: Genres
+      path: '/genre',
+      component: GenreMain,
+      children: [
+        {
+          path: '',
+          name: 'Genres',
+          component: Genres
+        },
+        {
+          path: 'new',
+          name: 'GenresNew',
+          component: GenreNew
+        },
+        {
+          path: 'edit/:id',
+          name: 'GenresEdit',
+          component: GenreEdit
+        }
+      ]
     },
     {
       // ジャンル指定用のID
