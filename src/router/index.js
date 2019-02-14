@@ -8,10 +8,12 @@ import Genres from '@/components/genres/Index'
 import GenreNew from '@/components/genres/New'
 import GenreEdit from '@/components/genres/Edit'
 
-import Menus from '@/components/menus/index'
-import MenuNew from '@/components/menus/new'
-import MenuEdit from '@/components/menus/edit'
-import MenuShow from '@/components/menus/show'
+import MenuMain from '@/components/menus/Main'
+import Menus from '@/components/menus/Index'
+import Menu from '@/components/menus/GenreFilterIndex'
+import MenuNew from '@/components/menus/New'
+import MenuEdit from '@/components/menus/Edit'
+import MenuShow from '@/components/menus/Show'
 // import MenuForm from '@/components/menus/_form'
 
 import Users from '@/components/users/index.vue'
@@ -63,25 +65,37 @@ export default new Router({
       ]
     },
     {
-      // ジャンル指定用のID
-      path: '/menus/:id',
-      name: 'Menus',
-      component: Menus
-    },
-    {
-      path: '/menu/new',
-      name: 'MenuNew',
-      component: MenuNew
-    },
-    {
-      path: '/menu/edit/:id',
-      name: 'MenuEdit',
-      component: MenuEdit
-    },
-    {
-      path: '/menu/:id',
-      name: 'MenuShow',
-      component: MenuShow
+      path: '/menus',
+      component: MenuMain,
+      children: [
+        // ジャンル関係無しのメニュー一覧
+        {
+          path: '',
+          component: Menus
+        },
+        {
+          // ジャンル指定用のID
+          path: ':id',
+          name: 'Menus',
+          component: Menu
+        },
+        {
+          path: 'new',
+          name: 'MenuNew',
+          component: MenuNew
+        },
+        {
+          path: 'edit/:id',
+          name: 'MenuEdit',
+          component: MenuEdit
+        },
+        // メニューの詳細(材料含む)
+        {
+          path: '/menu/:id',
+          name: 'MenuShow',
+          component: MenuShow
+        }
+      ]
     }
   ]
 })
