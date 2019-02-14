@@ -3,6 +3,7 @@
     <router-link to="/genres" tag="button" class="manu">メニュー<br>一覧 <font-awesome-icon icon="book-open" /></router-link>
     <router-link to="/users" tag="button" class="user_management">ユーザー<br>管理 <font-awesome-icon icon="user" /></router-link>
     <router-link to="/menu/new" tag="button" class="add_manu">メニュー<br>追加 <font-awesome-icon icon="plus" /></router-link>
+    <router-link to="/genre/new" tag="button" class="add_manu">ジャンル追加<br>追加 <font-awesome-icon icon="plus" /></router-link>
   </div>
 </template>
 

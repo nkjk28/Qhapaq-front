@@ -1,9 +1,7 @@
 <template>
   <div>
     <h2>ジャンル</h2>
-    <div v-for="genre in genres" v-bind:key="genre.id">
-      <router-link :to="{name: 'Menus', params: {id: genre.id}}">{{ genre.name }}</router-link>
-    </div>
+    <router-view></router-view>
   </div>
 </template>
 
