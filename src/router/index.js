@@ -54,12 +54,12 @@ export default new Router({
         },
         {
           path: 'new',
-          name: 'GenresNew',
+          name: 'GenreNew',
           component: GenreNew
         },
         {
           path: 'edit/:id',
-          name: 'GenresEdit',
+          name: 'GenreEdit',
           component: GenreEdit
         }
       ]
