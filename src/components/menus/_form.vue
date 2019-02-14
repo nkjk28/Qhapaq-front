@@ -11,14 +11,14 @@
     <label>メニュー名: <input type="name" v-model="menu.name" /> </label><br>
     <ul>
       <li v-for="(v,i) in menu.ingredients" v-bind:key="i">
-        {{i}}: {{v.name}}は一人あたり{{v.amount}}{{v.unit}}({{v.cost}}円)
+        {{v.name}}は一人あたり{{v.amount}}{{v.unit}}({{v.cost}}円)
         <button v-on:click="EditIngredientItem(i)">✎</button>
         <button v-on:click="RemoveIngredientItem(i)">✗</button>
       </li>
     </ul>
     <label>材料: <br>
       <input type="text" v-model="ingredientForm.name" placeholder="材料名"/>は一人あたり
-      <input type="text" v-model="ingredientForm.amount" placeholder="量">
+      <input type="number" v-model.number="ingredientForm.amount" placeholder="量">
       <select v-model="ingredientForm.unit">
         <option value="g">g</option>
         <option value="ml">ml</option>
@@ -28,7 +28,7 @@
         <option value="羽">羽</option>
       </select>
       で
-      <input type="text" v-model="ingredientForm.cost" placeholder="値段" v-on:keyup.enter="appendIngredient">円<br>
+      <input type="number" v-model.number="ingredientForm.cost" placeholder="値段" v-on:keyup.enter="appendIngredient">円<br>
       調理の仕方: <br>
       <textarea rows="5" cols="100" v-model="ingredientForm.description"> </textarea>
     </label><br>

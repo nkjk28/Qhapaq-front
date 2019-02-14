@@ -10,15 +10,19 @@
         <th>量</th>
         <th>金額</th>
         <th>説明</th>
+        <th>量計算</th>
+        <th>金額計算</th>
       </tr>
       <tr  v-for="ingredient in ingredients" v-bind:key="ingredient.name">
         <td>{{ ingredient.name }}</td>
+        <td>{{ ingredient.amount }}{{ ingredient.unit }}/人</td>
+        <td>{{ ingredient.cost }}円/人</td>
+        <td>{{ ingredient.description }}</td>
         <td>{{ ingredient.amount * person }}{{ ingredient.unit }}/人</td>
         <td>{{ ingredient.cost * person }}円/人</td>
-        <td>{{ ingredient.description }}</td>
       </tr>
     </table>
-    <router-link :to="{name: 'MenuEdit', params: {id: menu.id}}" tag="button">編集する</router-link>
+    <router-link :to="{ name: 'MenuEdit', params: { id: Number(menu.id) }}" tag="button">編集する</router-link>
   </div>
 </template>
 
@@ -27,7 +31,7 @@ export default {
   name: 'Ingredients',
   data () {
     return {
-      person: 1,
+      person: 0,
       menu: {},
       ingredients: []
     }

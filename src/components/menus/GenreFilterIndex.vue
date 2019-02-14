@@ -17,7 +17,7 @@ export default {
   },
   methods: {},
   mounted: function () {
-    this.axios.get('http://localhost:4567/genre/' + this.$route.params.id).then(response => {
+    this.axios.get('http://localhost:4567/menus/' + this.$route.params.id).then(response => {
       this.menus = response.data
     }).catch(error => {
       console.log(error.response)
