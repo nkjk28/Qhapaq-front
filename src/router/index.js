@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Vuex from 'vuex'
+
 import Index from '@/components/Index'
 import ManagementIndex from '@/components/ManagementIndex'
 
@@ -19,9 +21,9 @@ import MenuShow from '@/components/menus/Show'
 import Users from '@/components/users/index.vue'
 import UserNew from '@/components/users/new.vue'
 
-Vue.use(Router)
+Vue.use(Router, Vuex)
 
-export default new Router({
+export const router = new Router({
   routes: [
     {
       path: '/',
@@ -99,3 +101,17 @@ export default new Router({
     }
   ]
 })
+router.beforeEach((to, from, next) => {
+  // redirect to login page if not logged in and trying to access a restricted page
+  const publicPages = ['/']
+  const authRequired = !publicPages.includes(to.path)
+  const loggedIn = localStorage.getItem('user')
+
+  if (authRequired && !loggedIn) {
+    return next('/login')
+  }
+
+  next()
+})
+
+export default router

@@ -2,9 +2,9 @@
   <div class="index">
     <h1>Welcome to Qhapaq system</h1>
     <form v-on:submit.prevent="clickLoginButton">
-      <label>Username: <input type="text" v-model="user.name" placeholder="hoge"> </label>
+      <label>Username: <input type="text" v-model="username" placeholder="hoge"> </label>
       <br> <br>
-      <label>Password: <input type="password" v-model="user.password" placeholder="fuga"> </label>
+      <label>Password: <input type="password" v-model="password" placeholder="fuga"> </label>
       <br><br>
       <button>Login</button>
     </form>
@@ -13,28 +13,24 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
+
 export default {
   name: 'Index',
   data () {
     return {
-      user: {
-        name: '',
-        password: ''
-      }
+      username: '',
+      password: ''
     }
   },
+  computed: {
+    ...mapState('account', ['status'])
+  },
   methods: {
+    ...mapActions('account', ['login']),
     clickLoginButton: function () {
-      this.axios.post('http://localhost:4567/user/sign_in',
-        JSON.stringify({
-          name: this.user.name,
-          password: this.user.password
-        })
-      ).then(response => {
-        this.$router.push({name: 'ManagementIndex'})
-      }).catch(error => {
-        alert(error.response.statusText)
-      })
+      const { username, password } = this
+      this.login({username, password})
     }
   }
 }

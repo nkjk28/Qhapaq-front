@@ -25,7 +25,10 @@ export default {
       })
     },
     clickUpdateButton: function () {
-      this.axios.post('http://localhost:4567/genre/' + this.genre.id, JSON.stringify(this.genre)).then(response => {
+      let data = JSON.stringify(
+        Object.assign(this.genre, {userToken: ''})
+      )
+      this.axios.post('http://localhost:4567/genre/' + this.genre.id, data).then(response => {
         this.$router.push({name: 'Genres'})
       }).catch(err => {
         console.log(err.response)
