@@ -1,14 +1,13 @@
 <template>
   <div class="index">
-    <h1>学食メニューサポートシステム<br>Qhapaqにようこそ</h1>
+    <h1>学食メニューサポートシステム<br>「Qhapaq」へようこそ</h1>
     <form v-on:submit.prevent="clickLoginButton">
-      <label>　　　名前: <input type="text" v-model="user.name" placeholder="hoge"> </label>
+      <label>ユーザー名:<input type="text" v-model="user.name" placeholder="hoge"> </label>
       <br> <br>
       <label>パスワード: <input type="password" v-model="user.password" placeholder="fuga"> </label>
       <br><br>
-      <button>ログイン</button>
+      <button class="login_button">ログイン</button>
     </form>
-    <font-awesome-icon icon="coffee" />
   </div>
 </template>
 
@@ -42,12 +41,16 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.index {
-  background: aqua;
-}
+
 form {
-  border: 1px solid #ccc;
+  border: 15px solid #bebebe;
   padding: 50px;
   margin: 50px;
+   background: #87bbc2;
+}
+
+.login_button{
+  width: 15vw;
+  height: 5vh;
 }
 </style>
