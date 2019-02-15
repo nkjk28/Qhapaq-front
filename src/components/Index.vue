@@ -2,13 +2,14 @@
   <div class="index">
     <h1>Welcome to Qhapaq system</h1>
     <form v-on:submit.prevent="clickLoginButton">
-      <label>Username: <input type="text" v-model="user.name" placeholder="hoge"> </label>
-      <br> <br>
-      <label>Password: <input type="password" v-model="user.password" placeholder="fuga"> </label>
-      <br><br>
-      <button>Login</button>
+      <label>アカウント:
+        <b-form-input v-model="user.name" type="text" placeholder="Enter your name" />
+      </label><br>
+      <label>パスワード:
+        <b-form-input v-model="user.password" type="password" placeholder="Enter your password" />
+      </label><br>
+      <b-button variant="primary">ログイン</b-button>
     </form>
-    <font-awesome-icon icon="coffee" />
   </div>
 </template>
 
@@ -46,5 +47,11 @@ form {
   border: 1px solid #ccc;
   padding: 50px;
   margin: 50px;
+}
+label {
+  width: 100%;
+}
+input {
+  margin: 1em;
 }
 </style>
