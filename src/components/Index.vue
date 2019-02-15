@@ -52,5 +52,6 @@ form {
 .login_button{
   width: 15vw;
   height: 5vh;
+  border-radius: 20px;
 }
 </style>

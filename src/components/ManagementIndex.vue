@@ -1,14 +1,14 @@
 <template>
   <div>
-    <router-link to="/genres" tag="button" class="manu">メニュー<br>一覧 <font-awesome-icon icon="book-open" /></router-link>
+    <router-link to="/genre" tag="button" class="manu">メニュー<br>一覧 <font-awesome-icon icon="book-open" /></router-link>
     <router-link to="/users" tag="button" class="user_management">ユーザー<br>管理 <font-awesome-icon icon="user" /></router-link>
     <router-link to="/menu/new" tag="button" class="add_manu">メニュー<br>追加 <font-awesome-icon icon="plus" /></router-link>
-    <router-link to="/genre/new" tag="button" class="add_manu">ジャンル追加<br>追加 <font-awesome-icon icon="plus" /></router-link>
+    <router-link to="/genre/new" tag="button" class="add_genre">ジャンル<br>追加 <font-awesome-icon icon="plus" /></router-link>
   </div>
 </template>
 
 <style scoped>
-  .manu, .user_management, .add_manu{
+  .manu, .user_management, .add_manu, .add_genre{
     position: absolute;
     width: 35vw;
     height: 35vh;
@@ -47,5 +47,15 @@
 
   .add_manu:hover{
     background-color: #d18d38;
+  }
+
+  .add_genre{
+    top: 55vh;
+    left: 55vw;
+    background-color: #4238d1;
+  }
+
+  .add_genre:hover{
+    background-color: #4218d1;
   }
 </style>
