@@ -29,19 +29,17 @@
         <b-button variant="danger" v-on:click="RemoveIngredientItem(row.index)">✗</b-button>
       </template>
     </b-table>
-
+    <hr>
     <label>材料: <br>
       <b-row>
         <b-col sm="2">
           <b-form-input type="text" size="sm" v-model="ingredientForm.name" placeholder="材料名"/>
         </b-col>
-        <b-col sm="2">
           は一人あたり
+        <b-col sm="2">
+          <b-form-input type="number" size="sm" v-model="ingredientForm.amount" placeholder="量" />
         </b-col>
         <b-col sm="2">
-          <b-form-input type="number" size="sm" v-model.number="ingredientForm.amount" placeholder="量" />
-        </b-col>
-        <b-col sm="1">
           <b-select v-model="ingredientForm.unit">
             <option value="g">g</option>
             <option value="ml">ml</option>
@@ -51,21 +49,17 @@
             <option value="羽">羽</option>
           </b-select>
         </b-col>
-        <b-col sm="1">
         で
-        </b-col>
         <b-col sm="2">
-          <b-form-input type="number" size="sm" v-model.number="ingredientForm.cost" placeholder="値段" v-on:keyup.enter="appendIngredient" />
+          <b-form-input type="number" size="sm" v-model="ingredientForm.cost" placeholder="値段"/>
         </b-col>
-        <b-col sm="2">
           円
-        </b-col>
       </b-row>
       <br>
       <label>
         材料の調理の仕方: <br>
         <b-input-group>
-          <b-form-input type="text" v-model="ingredientForm.description" />
+          <b-form-input type="text" v-model="ingredientForm.description"  v-on:keyup.enter="appendIngredient" />
             <b-input-group-append>
               <b-button variant="primary" v-on:click="appendIngredient">材料を追加する</b-button>
             </b-input-group-append>
@@ -114,11 +108,12 @@ export default {
   methods: {
     appendIngredient: function () {
       if (this.ingredientForm.name) {
-        this.menu.ingredients.push(this.ingredientForm)
+        const data = Object.assign({}, this.ingredientForm)
+        this.menu.ingredients.push(data)
         this.ingredientForm.name = ''
-        this.ingredientForm.amount = 0
+        this.ingredientForm.amount = '0'
         this.ingredientForm.unit = ''
-        this.ingredientForm.cost = 0
+        this.ingredientForm.cost = '0'
         this.ingredientForm.description = ''
       }
     },
