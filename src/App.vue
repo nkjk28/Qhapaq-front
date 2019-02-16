@@ -54,6 +54,7 @@ h1 {
   -moz-osx-font-smoothing: grayscale;
   color: #666;
   margin: 50px 10% 50px 10%;
+}
 header{
   background-color: #bdbcff;
 }
