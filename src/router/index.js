@@ -89,12 +89,12 @@ export const router = new Router({
           component: Menu
         },
         {
-          path: 'new',
+          path: '/menu/new',
           name: 'MenuNew',
           component: MenuNew
         },
         {
-          path: 'edit/:id',
+          path: '/menu/edit/:id',
           name: 'MenuEdit',
           component: MenuEdit
         },
@@ -105,7 +105,8 @@ export const router = new Router({
           component: MenuShow
         }
       ]
-    }
+    },
+    { path: '*', component: _Error }
   ]
 })
 router.beforeEach((to, from, next) => {
