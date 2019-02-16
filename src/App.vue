@@ -16,7 +16,6 @@ export default {
 <style>
 header{
   background-color: #bdbcff;
-  
 }
 .name{
   color:#ececec;
