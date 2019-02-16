@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>メニュー</h1>
     <router-view></router-view>
   </div>
 </template>

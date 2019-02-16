@@ -73,6 +73,7 @@ export const router = new Router({
         // ジャンル関係無しのメニュー一覧
         {
           path: '',
+          name: 'MenusIndex',
           component: Menus
         },
         {
