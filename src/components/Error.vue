@@ -22,6 +22,9 @@ export default {
         this.msg = 'セッション切れです再度ログインして下さい。３秒後に自動的にログインへ移行します'
         setTimeout(() => { this.logout() }, 3000)
         break
+      default:
+        this.msg = 'ページが存在しません'
+        break
     }
   }
 }

@@ -7,7 +7,8 @@
         {{ genre.name}}
         </option>
       </b-select>
-    </label><br><br>
+    </label>
+
     <label>メニュー名:
       <b-form-input type="text" v-model="menu.name" />
     </label>
@@ -29,8 +30,8 @@
         <b-button variant="danger" v-on:click="RemoveIngredientItem(row.index)">✗</b-button>
       </template>
     </b-table>
-    <hr>
-    <label>材料: <br>
+
+    <label>材料:
       <b-row>
         <b-col sm="2">
           <b-form-input type="text" size="sm" v-model="ingredientForm.name" placeholder="材料名"/>
@@ -55,19 +56,40 @@
         </b-col>
           円
       </b-row>
-      <br>
-      <label>
-        材料の調理の仕方: <br>
-        <b-input-group>
-          <b-form-input type="text" v-model="ingredientForm.description"  v-on:keyup.enter="appendIngredient" />
-            <b-input-group-append>
-              <b-button variant="primary" v-on:click="appendIngredient">材料を追加する</b-button>
-            </b-input-group-append>
+    </label>
+    <b-button variant="primary" v-on:click="appendIngredient">材料を追加する</b-button><br><br>
+
+    <b-table :items="menu.steps" :fields="stepFields">
+      <template slot="num" slot-scope="row">
+        {{ row.index + 1 }}
+      </template>
+
+      <template slot="description" slot-scope="row">
+        {{ row.item.description }}
+      </template>
+
+      <template slot="edit" slot-scope="row">
+        <b-button variant="success" v-on:click="EditStepItem(row.index)">✑</b-button>
+      </template>
+
+      <template slot="delete" slot-scope="row">
+        <b-button variant="danger" v-on:click="RemoveStepItem(row.index)">✗</b-button>
+      </template>
+
+    </b-table>
+    <label>
+      工程:
+      <b-input-group>
+        <b-form-input type="text" v-model="stepForm" v-on:keyup.enter="appendStep"/>
+          <b-input-group-append>
+            <b-button variant="primary" v-on:click="appendStep">工程を追加する</b-button>
+          </b-input-group-append>
         </b-input-group>
-       </label>
     </label><br>
 
-    <b-button variant="success" v-on:click="clickCreateButton" v-if="method == 'post'">メニューを追加</b-button>
+    <b-button variant="success" v-on:click="clickCreateButton" v-if="method == 'post'" v-bind:disabled="!(Boolean(menu.genre_id && menu.name && menu.ingredients.length))">
+      メニューを追加
+    </b-button>
     <b-button variant="success" v-on:click="clickUpdateButton" v-else>更新を適応</b-button>
   </div>
 </template>
@@ -95,6 +117,8 @@ export default {
         description: ''
       },
       removeIngredientItemList: [],
+      stepForm: '',
+      removeStepItemList: [],
       fields: [
         { key: 'name', label: '材料名' },
         { key: 'amount', label: '量' },
@@ -102,10 +126,22 @@ export default {
         { key: 'description', label: '材料の説明' },
         { key: 'edit', label: '編集' },
         { key: 'delete', label: '削除' }
+      ],
+      stepFields: [
+        { key: 'num', label: '順序' },
+        { key: 'description', label: '説明' },
+        { key: 'edit', label: '編集' },
+        { key: 'delete', label: '削除' }
       ]
     }
   },
   methods: {
+    appendStep: function () {
+      if (this.stepForm) {
+        this.menu.steps.push({description: this.stepForm})
+      }
+      this.stepForm = ''
+    },
     appendIngredient: function () {
       if (this.ingredientForm.name) {
         const data = Object.assign({}, this.ingredientForm)
@@ -125,6 +161,14 @@ export default {
       this.removeIngredientItemList.push(this.menu.ingredients[indexNumber])
       this.menu.ingredients.splice(indexNumber, 1)
     },
+    EditStepItem: function (indexNumber) {
+      this.stepForm = this.menu.steps[indexNumber].description
+      this.menu.steps.splice(indexNumber, 1)
+    },
+    RemoveStepItem: function (indexNumber) {
+      this.removeStepItemList.push(this.menu.steps[indexNumber])
+      this.menu.steps.splice(indexNumber, 1)
+    },
     clickCreateButton: function () {
       let data = JSON.stringify(
         Object.assign(this.menu, {userToken: this.user.token})
@@ -141,6 +185,7 @@ export default {
       let data = JSON.stringify(
         Object.assign(this.menu, {
           removeIngredientItemList: this.removeIngredientItemList,
+          removeStepItemList: this.removeStepItemList,
           userToken: this.user.token
         })
       )
