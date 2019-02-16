@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 
 import Index from '@/components/Index'
 import ManagementIndex from '@/components/ManagementIndex'
+import _Error from '@/components/Error'
 
 import GenreMain from '@/components/genres/Main'
 import Genres from '@/components/genres/Index'
@@ -29,6 +30,11 @@ export const router = new Router({
       path: '/',
       name: 'Index',
       component: Index
+    },
+    {
+      path: '/error/:code',
+      name: 'Error',
+      component: _Error
     },
     {
       path: '/management-index',
@@ -104,12 +110,12 @@ export const router = new Router({
 })
 router.beforeEach((to, from, next) => {
   // redirect to login page if not logged in and trying to access a restricted page
-  const publicPages = ['/']
+  const publicPages = ['/', '/error']
   const authRequired = !publicPages.includes(to.path)
   const loggedIn = localStorage.getItem('user')
 
   if (authRequired && !loggedIn) {
-    return next('/login')
+    return next('/')
   }
 
   next()
