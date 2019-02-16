@@ -16,7 +16,8 @@ export default {
       newMenu: {
         name: '',
         genre_id: 0,
-        ingredients: []
+        ingredients: [],
+        steps: []
       }
     }
   }

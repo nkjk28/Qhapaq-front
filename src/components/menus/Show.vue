@@ -1,6 +1,7 @@
 <template>
   <div>
     <h2> {{ menu.name }}</h2>
+    <br>
     <b-row>
       <b-col md="6" class="my-1">
         <b-form-group label-cols-sm="3" label="人数計算:" class="mb-0">
@@ -30,6 +31,12 @@
         {{ row.item.cost * person }}円
       </template>
     </b-table>
+    <br>
+    <h2>工程</h2>
+    <ol>
+      <li v-for="(step, i) in menu.steps" v-bind:key="i">{{ step.description }}</li>
+    </ol>
+    <br>
     <b-button :to="{ name: 'MenuEdit', params: { id: Number(menu.id) }}" variant="success">編集する</b-button>
   </div>
 </template>
