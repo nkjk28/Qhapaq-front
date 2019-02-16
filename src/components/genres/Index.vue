@@ -25,3 +25,10 @@ export default {
   }
 }
 </script>
+
+<style>
+  #Menus
+  {
+    background-color: brown;
+  }
+</style>
