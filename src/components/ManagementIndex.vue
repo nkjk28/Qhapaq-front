@@ -1,56 +1,61 @@
 <template>
   <div>
-    <h1>管理ページ</h1>
-    <h2>メニュー関連</h2>
-    <b-card-group deck>
-      <b-card title="メニュー一覧" sub-title="Menus">
-
-        <b-card-text>
-          メニューの一覧を表示します
-        </b-card-text>
-
-        <b-link :to="{name: 'MenusIndex'}" class="card-link">メニュー一覧</b-link>
-      </b-card>
-
-      <b-card title="ジャンル別のメニュー一覧" sub-title="Genre filter menus">
-
-        <b-card-text>
-          登録されたジャンルごとにメニューをフィルタリングして表示します
-        </b-card-text>
-
-        <b-link :to="{name: 'Genres'}" class="card-link">ジャンル別メニュー一覧</b-link>
-      </b-card>
-    </b-card-group>
-    <h2>追加</h2>
-    <b-card-group deck>
-      <b-card title="メニューを追加" sub-title="Add Menu">
-        <b-card-text>
-          ジャンルを選択しメニューを作成することができます
-        </b-card-text>
-
-        <b-link :to="{name: 'MenuNew'}" class="card-link">メニュー追加</b-link>
-      </b-card>
-
-      <b-card title="ジャンル追加" sub-title="Add Genre">
-        <b-card-text>メニューが属するためのジャンルを作成することができます</b-card-text>
-        <b-link :to="{name: 'GenreNew'}" class="card-link">ジャンル追加</b-link>
-      </b-card>
-    </b-card-group>
-    <h2>ユーザー関連</h2>
-    <b-card-group deck>
-      <b-card title="ユーザー管理" sub-title="User Management">
-        <b-card-text>
-          Administratorや多のユーザーの管理を行うことができます
-        </b-card-text>
-
-        <b-link :to="{name: 'Users'}" class="card-link">ユーザー管理</b-link>
-      </b-card>
-    </b-card-group>
+    <router-link to="/genre" tag="button" class="manu">メニュー<br>一覧 <font-awesome-icon icon="book-open" /></router-link>
+    <router-link to="/users" tag="button" class="user_management">ユーザー<br>管理 <font-awesome-icon icon="user" /></router-link>
+    <router-link to="/menu/new" tag="button" class="add_manu">メニュー<br>追加 <font-awesome-icon icon="plus" /></router-link>
+    <router-link to="/genre/new" tag="button" class="add_genre">ジャンル<br>追加 <font-awesome-icon icon="plus" /></router-link>
   </div>
 </template>
 
-<style>
-h2 {
-  margin-top: 1em;
-}
+<style scoped>
+  .manu, .user_management, .add_manu, .add_genre{
+    position: absolute;
+    width: 35vw;
+    height: 35vh;
+    font-size:5vh;
+    border-radius: 5vh;
+    box-shadow:1vh 1vw #555555;
+    -webkit-text-stroke: 1px #cccccc;
+    font-weight: bold;
+    font-size: 7vh;
+  }
+  .manu{
+    top: 10vh;
+    left: 10vw;
+    background-color: #38d140;
+  }
+
+  .manu:hover{
+    background-color: #38a140;
+  }
+
+  .user_management{
+    top: 10vh;
+    left: 55vw;
+    background-color: #ca4667;
+  }
+
+  .user_management:hover{
+    background-color: #ca2667;
+  }
+
+  .add_manu{
+    top: 55vh;
+    left: 10vw;
+    background-color: #d1ad38;
+  }
+
+  .add_manu:hover{
+    background-color: #d18d38;
+  }
+
+  .add_genre{
+    top: 55vh;
+    left: 55vw;
+    background-color: #4238d1;
+  }
+
+  .add_genre:hover{
+    background-color: #4218d1;
+  }
 </style>
