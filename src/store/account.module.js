@@ -19,7 +19,7 @@ const actions = {
       })
     ).then(response => {
       commit('login', response.data)
-      localStorage.setItem('user', JSON.stringify(user))
+      localStorage.setItem('user', JSON.stringify(response.data))
       router.push({name: 'ManagementIndex'})
     }).catch(error => {
       dispatch('alert/error', error, { root: true })
@@ -28,6 +28,7 @@ const actions = {
   logout ({ commit }) {
     commit('logout')
     localStorage.removeItem('user')
+    router.push({name: 'Index'})
   }
 }
 

@@ -3,10 +3,10 @@
     <h1>学食メニューサポートシステム<br>「Qhapaq」へようこそ</h1>
     <form v-on:submit.prevent="clickLoginButton">
       <label>ユーザー名:
-        <b-form-input v-model="user.name" type="text" placeholder="Enter your name" />
+        <b-form-input v-model="username" type="text" placeholder="Enter your name" />
       </label><br>
       <label>パスワード:
-        <b-form-input v-model="user.password" type="password" placeholder="Enter your password" />
+        <b-form-input v-model="password" type="password" placeholder="Enter your password" />
       </label><br>
       <button class="login_button">ログイン</button>
     </form>

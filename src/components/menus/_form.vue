@@ -86,6 +86,8 @@ div #menu {
 </style>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   props: ['method', 'menu'],
   data () {
@@ -129,23 +131,36 @@ export default {
       this.menu.ingredients.splice(indexNumber, 1)
     },
     clickCreateButton: function () {
-      this.axios.post('http://localhost:4567/menu', JSON.stringify(this.menu)).then(response => {
+      let data = JSON.stringify(
+        Object.assign(this.menu, {userToken: this.user.token})
+      )
+      this.axios.post('http://localhost:4567/menu', data).then(response => {
         this.$router.push({name: 'MenuShow', params: {id: response.data.id}})
       }).catch(err => {
-        console.log(err.response)
+        if (err.response.status === 403) {
+          this.$router.push({name: 'Error', params: {code: 403}})
+        }
       })
     },
     clickUpdateButton: function () {
       let data = JSON.stringify(
-        Object.assign(this.menu, {removeIngredientItemList: this.removeIngredientItemList})
+        Object.assign(this.menu, {
+          removeIngredientItemList: this.removeIngredientItemList,
+          userToken: this.user.token
+        })
       )
       let url = 'http://localhost:4567/menu/' + this.menu.id
       this.axios.post(url, data).then(response => {
         this.$router.push({name: 'MenuShow', params: {id: response.data.id}})
       }).catch(err => {
-        console.log(err.response)
+        if (err.response.status === 403) {
+          this.$router.push({name: 'Error', params: {code: 403}})
+        }
       })
     }
+  },
+  computed: {
+    ...mapState('account', ['user'])
   },
   mounted: function () {
     this.axios.get('http://localhost:4567/genres').then(response => {
