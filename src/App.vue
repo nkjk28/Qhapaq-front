@@ -2,11 +2,11 @@
   <div id="app">
     <header>
       <b-navbar toggleable="lg" type="dark" variant="info">
-        <b-navbar-brand ><router-link :to="{name: 'Index'}">Qhapaq</router-link></b-navbar-brand>
+        <b-navbar-brand ><router-link :to="{name: 'Index'}" class="header-icon">Qhapaq</router-link></b-navbar-brand>
 
         <b-navbar-toggle target="nav_collapse" />
 
-          <b-collapse is-nav id="nav_collapse">
+          <b-collapse is-nav id="nav_collapse" v-if="status.loggedIn">
             <b-navbar-nav>
               <b-nav-item :to="{name: 'ManagementIndex'}">管理</b-nav-item>
               <b-nav-item :to="{name: 'MenusIndex'}">メニューを探す</b-nav-item>
@@ -17,9 +17,9 @@
             <b-navbar-nav class="ml-auto">
               <b-nav-item-dropdown right>
                 <!-- Using button-content slot -->
-                <template slot="button-content"><em>User</em></template>
-                <b-dropdown-item href="#">Profile</b-dropdown-item>
-                <b-dropdown-item href="#">Signout</b-dropdown-item>
+                <template slot="button-content"><em>{{ user.user.name }}</em></template>
+                <b-dropdown-item>Profile</b-dropdown-item>
+                <b-dropdown-item v-on:click=" logout() ">ログアウト</b-dropdown-item>
               </b-nav-item-dropdown>
             </b-navbar-nav>
           </b-collapse>
@@ -35,8 +35,13 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
 export default {
-  name: 'App'
+  name: 'App',
+  computed: {
+    ...mapState('account', ['status', 'user']),
+    ...mapActions('account', ['logout'])
+  }
 }
 </script>
 
@@ -79,5 +84,13 @@ header{
   border-right: 1.5vh solid #ececec;
   border-bottom: 3.5vh solid transparent;
   border-left: 3.5vh solid transparent;
+}
+
+.header-icon {
+  color: #fff;
+}
+.header-icon:hover {
+  color: #ccc;
+  text-decoration: none;
 }
 </style>

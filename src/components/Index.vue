@@ -3,10 +3,10 @@
     <h1>学食メニューサポートシステム<br>「Qhapaq」へようこそ</h1>
     <form v-on:submit.prevent="clickLoginButton">
       <label>ユーザー名:
-        <b-form-input v-model="user.name" type="text" placeholder="Enter your name" />
+        <b-form-input v-model="username" type="text" placeholder="Enter your name" />
       </label><br>
       <label>パスワード:
-        <b-form-input v-model="user.password" type="password" placeholder="Enter your password" />
+        <b-form-input v-model="password" type="password" placeholder="Enter your password" />
       </label><br>
       <button class="login_button">ログイン</button>
     </form>
@@ -14,28 +14,24 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
+
 export default {
   name: 'Index',
   data () {
     return {
-      user: {
-        name: '',
-        password: ''
-      }
+      username: '',
+      password: ''
     }
   },
+  computed: {
+    ...mapState('account', ['status'])
+  },
   methods: {
+    ...mapActions('account', ['login']),
     clickLoginButton: function () {
-      this.axios.post('http://localhost:4567/user/sign_in',
-        JSON.stringify({
-          name: this.user.name,
-          password: this.user.password
-        })
-      ).then(response => {
-        this.$router.push({name: 'ManagementIndex'})
-      }).catch(error => {
-        alert(error.response.statusText)
-      })
+      const { username, password } = this
+      this.login({username, password})
     }
   }
 }

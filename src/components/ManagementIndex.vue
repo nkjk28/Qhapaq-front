@@ -8,6 +8,15 @@
   </div>
 </template>
 
+<script>
+import { mapState } from 'vuex'
+export default {
+  computed: {
+    ...mapState('account', ['status', 'user'])
+  }
+}
+</script>
+
 <style>
 .menu, .genre_menu, .user_management, .add_menu, .add_genre{
   position: absolute;
@@ -72,3 +81,4 @@
   background-color: #4218d1;
 }
 </style>
+>>>>>>> develop
