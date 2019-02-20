@@ -1,17 +1,27 @@
 <template>
-  <div>
+  <div id="genre">
     <label>ジャンル名:
-      <input type="text" v-model="genre.name"/>
+      <b-form-input type="text" v-model="genre.name"/>
     </label><br>
     <br>
     <label>ジャンルの説明:
-      <input type="text" v-model="genre.description"/>
+      <b-form-input type="text" v-model="genre.description"/>
     </label><br>
     <br>
-    <button v-on:click="clickCreateButton" v-if="method == 'post'">追加</button>
-    <button v-on:click="clickUpdateButton" v-else>更新</button>
+    <b-button variant="success" @click="clickCreateButton" v-if="method == 'post'">追加</b-button>
+    <b-button variant="success" @click="clickUpdateButton" v-else>更新</b-button>
   </div>
 </template>
+
+<style>
+div #genre {
+  padding: 1em;
+  border: 1px solid #ccc;
+}
+label {
+  width: 100%;
+}
+</style>
 
 <script>
 export default {

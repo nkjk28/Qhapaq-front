@@ -23,11 +23,11 @@
       </template>
 
       <template slot="edit" slot-scope="row">
-        <b-button variant="success" v-on:click="EditIngredientItem(row.index)">✑</b-button>
+        <b-button variant="success" @click="EditIngredientItem(row.index)">✑</b-button>
       </template>
 
       <template slot="delete" slot-scope="row">
-        <b-button variant="danger" v-on:click="RemoveIngredientItem(row.index)">✗</b-button>
+        <b-button variant="danger" @click="RemoveIngredientItem(row.index)">✗</b-button>
       </template>
     </b-table>
 
@@ -57,7 +57,7 @@
           円
       </b-row>
     </label>
-    <b-button variant="primary" v-on:click="appendIngredient">材料を追加する</b-button><br><br>
+    <b-button variant="primary" @click="appendIngredient">材料を追加する</b-button><br><br>
 
     <b-table :items="menu.steps" :fields="stepFields">
       <template slot="num" slot-scope="row">
@@ -69,11 +69,11 @@
       </template>
 
       <template slot="edit" slot-scope="row">
-        <b-button variant="success" v-on:click="EditStepItem(row.index)">✑</b-button>
+        <b-button variant="success" @click="EditStepItem(row.index)">✑</b-button>
       </template>
 
       <template slot="delete" slot-scope="row">
-        <b-button variant="danger" v-on:click="RemoveStepItem(row.index)">✗</b-button>
+        <b-button variant="danger" @click="RemoveStepItem(row.index)">✗</b-button>
       </template>
 
     </b-table>
@@ -82,15 +82,15 @@
       <b-input-group>
         <b-form-input type="text" v-model="stepForm" v-on:keyup.enter="appendStep"/>
           <b-input-group-append>
-            <b-button variant="primary" v-on:click="appendStep">工程を追加する</b-button>
+            <b-button variant="primary" @click="appendStep">工程を追加する</b-button>
           </b-input-group-append>
         </b-input-group>
     </label><br>
 
-    <b-button variant="success" v-on:click="clickCreateButton" v-if="method == 'post'" v-bind:disabled="!(Boolean(menu.genre_id && menu.name && menu.ingredients.length))">
+    <b-button variant="success" @click="clickCreateButton" v-if="method == 'post'" v-bind:disabled="!(Boolean(menu.genre_id && menu.name && menu.ingredients.length))">
       メニューを追加
     </b-button>
-    <b-button variant="success" v-on:click="clickUpdateButton" v-else>更新を適応</b-button>
+    <b-button variant="success" @click="clickUpdateButton" v-else>更新を適応</b-button>
   </div>
 </template>
 

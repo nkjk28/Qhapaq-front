@@ -19,7 +19,8 @@
                 <!-- Using button-content slot -->
                 <template slot="button-content"><em>{{ user.user.name }}</em></template>
                 <b-dropdown-item>Profile</b-dropdown-item>
-                <b-dropdown-item v-on:click=" logout() ">ログアウト</b-dropdown-item>
+                <b-dropdown-item>{{ user.expiration_time }}</b-dropdown-item>
+                <b-dropdown-item @click="logout()">ログアウト</b-dropdown-item>
               </b-nav-item-dropdown>
             </b-navbar-nav>
           </b-collapse>
