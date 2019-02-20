@@ -25,6 +25,7 @@ import UserNew from '@/components/users/new.vue'
 Vue.use(Router, Vuex)
 
 export const router = new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
