@@ -10,6 +10,14 @@
       </label><br>
       <button class="login_button">ログイン</button>
     </form>
+    <h2>更新履歴</h2>
+    <div class="news">
+      <ul>
+        <li> 2019/02/21 デプロイ </li>
+      </ul>
+    </div>
+    <a href="https://github.com/nkjk28/Qhapaq-front">ソースコード</a>
+    <a href="https://github.com/nkjk28/Qhapaq-front/blob/master/LICENSE">ライセンス</a><br>
   </div>
 </template>
 
@@ -39,6 +47,14 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.news {
+  width: 100%;
+  height: 200px;
+  overflow-y: scroll;
+}
+.news::-webkit-scrollbar {
+  display: none;
+}
 
 form {
   border: 15px solid #bebebe;

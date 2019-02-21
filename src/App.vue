@@ -27,7 +27,6 @@
         </b-navbar>
     </header>
     <router-view class="main"/>
-    <footer>footer</footer>
     <!-- <border class="triangle1"></border> -->
     <!-- <border class="triangle2"></border> -->
     <!-- <header class="name"><font size="9">Qhapaq</font></header> -->
