@@ -48,7 +48,7 @@ export default {
 <style>
 html, body {
   margin: 0;
-  background-color: #ececec;
+  /* background-color: #ececec; */
 }
 h1 {
   text-align: center;
