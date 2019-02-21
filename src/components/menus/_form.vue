@@ -48,6 +48,8 @@
             <option value="匹">匹</option>
             <option value="個">個</option>
             <option value="羽">羽</option>
+            <option value="大匙">大匙</option>
+            <option value="小匙">小匙</option>
           </b-select>
         </b-col>
         で
