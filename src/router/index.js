@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Vuex from 'vuex'
+import Vuex from '@/store/index'
+import axios from 'axios'
 
 import Index from '@/components/Index'
 import ManagementIndex from '@/components/ManagementIndex'
@@ -114,10 +115,16 @@ router.beforeEach((to, from, next) => {
   // redirect to login page if not logged in and trying to access a restricted page
   const publicPages = ['/', '/error']
   const authRequired = !publicPages.includes(to.path)
-  const loggedIn = localStorage.getItem('user')
+  const account = Vuex.state.account
 
-  if (authRequired && !loggedIn) {
+  if (authRequired && !account.user) {
     return next('/')
+  }
+
+  if (account.user) {
+    axios.get(process.env.API_ENDPOINT + 'authentication/' + account.user.token).catch(function () {
+      next({ path: '/error/403' })
+    })
   }
 
   next()
