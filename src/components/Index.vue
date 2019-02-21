@@ -13,7 +13,8 @@
     <h2>更新履歴</h2>
     <div class="news">
       <ul>
-        <li> 2019/02/21 デプロイ </li>
+        <li> 2019/02/21 11:38 材料追加をEnterKeyで出来るように </li>
+        <li> 2019/02/21 09:33 デプロイ </li>
       </ul>
     </div>
     <a href="https://github.com/nkjk28/Qhapaq-front">ソースコード</a>

@@ -54,7 +54,7 @@
         </b-col>
         で
         <b-col sm="2">
-          <b-form-input type="number" size="sm" v-model="ingredientForm.cost" placeholder="値段"/>
+          <b-form-input type="number" size="sm" v-model="ingredientForm.cost" placeholder="値段" v-on:keyup.enter="appendIngredient"/>
         </b-col>
           円
       </b-row>
