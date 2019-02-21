@@ -16,7 +16,7 @@ export default {
     }
   },
   mounted: function () {
-    this.axios.get('http://localhost:4567/genre/' + this.$route.params.id).then(response => {
+    this.axios.get(process.env.API_ENDPOINT + 'genre/' + this.$route.params.id).then(response => {
       this.genre = response.data
     }).catch(error => {
       console.log(error.response)

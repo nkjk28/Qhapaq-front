@@ -173,7 +173,7 @@ export default {
       let data = JSON.stringify(
         Object.assign(this.menu, {userToken: this.user.token})
       )
-      this.axios.post('http://localhost:4567/menu', data).then(response => {
+      this.axios.post(process.env.API_ENDPOINT + 'menu', data).then(response => {
         this.$router.push({name: 'MenuShow', params: {id: response.data.id}})
       }).catch(err => {
         if (err.response.status === 403) {
@@ -189,7 +189,7 @@ export default {
           userToken: this.user.token
         })
       )
-      let url = 'http://localhost:4567/menu/' + this.menu.id
+      let url = process.env.API_ENDPOINT + 'menu/' + this.menu.id
       this.axios.post(url, data).then(response => {
         this.$router.push({name: 'MenuShow', params: {id: response.data.id}})
       }).catch(err => {
@@ -203,7 +203,7 @@ export default {
     ...mapState('account', ['user'])
   },
   mounted: function () {
-    this.axios.get('http://localhost:4567/genres').then(response => {
+    this.axios.get(process.env.API_ENDPOINT + 'genres').then(response => {
       this.genres = response.data
     }).catch(error => {
       console.log(error.response)

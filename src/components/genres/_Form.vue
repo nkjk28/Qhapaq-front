@@ -28,7 +28,7 @@ export default {
   props: ['method', 'genre'],
   methods: {
     clickCreateButton: function () {
-      this.axios.post('http://localhost:4567/genre', JSON.stringify(this.genre)).then(response => {
+      this.axios.post(process.env.API_ENDPOINT + 'genre', JSON.stringify(this.genre)).then(response => {
         this.$router.push({name: 'Genres'})
       }).catch(err => {
         console.log(err.response)
@@ -38,7 +38,7 @@ export default {
       let data = JSON.stringify(
         Object.assign(this.genre, {userToken: ''})
       )
-      this.axios.post('http://localhost:4567/genre/' + this.genre.id, data).then(response => {
+      this.axios.post(process.env.API_ENDPOINT + 'genre/' + this.genre.id, data).then(response => {
         this.$router.push({name: 'Genres'})
       }).catch(err => {
         console.log(err.response)

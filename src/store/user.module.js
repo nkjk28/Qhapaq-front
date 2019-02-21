@@ -12,7 +12,7 @@ const state = user
 
 const actions = {
   login ({ dispatch, commit }, {username, password}) {
-    axios.post('http://localhost:4567/user/sign_in',
+    axios.post(process.env.API_ENDPOINT + 'sign_in',
       JSON.stringify({
         name: username,
         password: password

@@ -18,7 +18,7 @@ export default {
   methods: {
   },
   mounted: function () {
-    this.axios.get('http://localhost:4567/genres').then(response => {
+    this.axios.get(process.env.API_ENDPOINT + 'genres').then(response => {
       this.genres = response.data
     }).catch(error => {
       console.log(error.response)

@@ -60,7 +60,7 @@ export default {
     }
   },
   mounted: function () {
-    this.axios.get('http://localhost:4567/menu/' + this.$route.params.id).then(response => {
+    this.axios.get(process.env.API_ENDPOINT + 'menu/' + this.$route.params.id).then(response => {
       this.menu = response.data
       this.ingredients = response.data.ingredients
     }).catch(error => {

@@ -18,7 +18,7 @@ export default {
   },
   methods: {},
   mounted: function () {
-    this.axios.get('http://localhost:4567/menus').then(response => {
+    this.axios.get(process.env.API_ENDPOINT + 'menus').then(response => {
       this.menus = response.data
     }).catch(error => {
       console.log(error.response)
