@@ -13,8 +13,7 @@
     <h2>更新履歴</h2>
     <div class="news">
       <ul>
-        <li> 2019/02/21 11:38 材料追加をEnterKeyで出来るように </li>
-        <li> 2019/02/21 09:33 デプロイ </li>
+        <li v-for="(n,i) in news" v-bind:key="i" v-if=" !(n.commit.message === 'update for heroku') ">{{n.commit.committer.date}}: {{n.commit.message}}</li>
       </ul>
     </div>
     <a href="https://github.com/nkjk28/Qhapaq-front">ソースコード</a>
@@ -30,11 +29,19 @@ export default {
   data () {
     return {
       username: '',
-      password: ''
+      password: '',
+      news: []
     }
   },
   computed: {
     ...mapState('account', ['status'])
+  },
+  mounted: function () {
+    this.axios.get('https://api.github.com/repos/nkjk28/Qhapaq-front/commits').then(response => {
+      this.news = response.data
+    }).catch(error => {
+      console.log(error.response)
+    })
   },
   methods: {
     ...mapActions('account', ['login']),
@@ -61,7 +68,7 @@ form {
   border: 15px solid #bebebe;
   padding: 50px;
   margin: 50px;
-   background: #87bbc2;
+  background: #87bbc2;
 }
 
 .login_button{
